@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import SelectedFoods from './SelectedFoods';
 import FoodSearch from './FoodSearch';
 
@@ -37,5 +38,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

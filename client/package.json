@@ -5,7 +5,9 @@
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^2.0.1"
+
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
