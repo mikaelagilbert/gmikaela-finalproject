@@ -31,8 +31,6 @@ module.exports = {
   },
 
   getUser: function (username, callback) {
-    console.log('searching db!')
-    var user = mongo.User.findOne({username: username});
-    callback(user);
+    var user = mongo.User.findOne({username: username}, callback);
   }
 };

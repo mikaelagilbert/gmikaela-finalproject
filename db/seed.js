@@ -4,6 +4,7 @@ var seedData = require('./seedData');
 
 var seedDb = function (done) {
   seeder(seedData, mongo.mongoose, function (err) {
+    console.log('inside seed.js seedDb function')
     if (err) {
       console.log(err);
       done(err);

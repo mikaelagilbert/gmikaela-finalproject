@@ -18,8 +18,8 @@ var router = new express.Router();
 
 router.get('/user', (req, res) => {
   console.log('router working');
-  var user = usersDb.getUser('mikaelagilbert', function (error, result) {
-    console.log(error, result);
+  usersDb.getUser('mikaelagilbert', function (error, result) {
+    console.log(error ,result);
   });
 });
 
