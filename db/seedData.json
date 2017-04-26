@@ -1,0 +1,16 @@
+{
+  "user": {
+    "mikaelagilbert": {
+      "_id": "54c1321303069f7ee53adcfb",
+      "username": "mikaelagilbert",
+      "password": "mikaela",
+      "name": "Mikaela Gilbert"
+    },
+    "devesh": {
+      "_id": "6a4928afd0f20971d82105e4",
+      "username": "devesh",
+      "password": "hi",
+      "name": "Devesh"
+    }
+  }
+}

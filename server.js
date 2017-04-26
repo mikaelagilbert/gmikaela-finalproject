@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const sqlite = require('sql.js');
+var usersDb = require('../db/user');
 
 const filebuffer = fs.readFileSync('db/usda-nnd.sqlite3');
 
