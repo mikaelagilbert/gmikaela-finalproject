@@ -16,10 +16,20 @@ if (process.env.NODE_ENV === 'production') {
 var router = new express.Router();
 
 
-router.get('/user', (req, res) => {
+router.get('/dbtest', (req, res) => {
   console.log('router working');
   usersDb.getUser('mikaelagilbert', function (error, result) {
-    console.log(error ,result);
+    console.log(error, result);
+  });
+});
+
+app.get('/user', (req, res) => {
+  //should get username from req.body.username once you implement login
+  //var username = req.session.username;
+  var globalusername = 'mikaelagilbert';
+
+  usersDb.getUser({username: globalusername}, function (error, result) {
+    res.json({name: globalusername});
   });
 });
 

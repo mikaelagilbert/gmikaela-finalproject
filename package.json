@@ -10,7 +10,9 @@
     "fs": "0.0.2",
     "mongoose": "^4.1.11",
     "node-uuid": "^1.4.8",
-    "seeder": "^0.2.1"
+    "seeder": "^0.2.1",
+    "body-parser": "^1.14.1",
+    "cookie-session": "^2.0.0-alpha.1"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",

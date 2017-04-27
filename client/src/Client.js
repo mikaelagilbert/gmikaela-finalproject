@@ -22,5 +22,16 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search };
+function getUserInfo(cb) {
+  return fetch(`/user`, {
+    accept: 'application/json',
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(function(response) {
+      // console.log("HELLO!" + response);
+      cb(response);
+    })
+}
+
+const Client = { getUserInfo };
 export default Client;
