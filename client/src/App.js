@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import * as actions from './actions';
+import * as initialState from './initialState.js';
 import SelectedFoods from './SelectedFoods';
 import FoodSearch from './FoodSearch';
 import Client from './Client';
 
 class Container extends Component {
-
+ 
   componentDidMount() {
-    var props = this.props.route.globalState;
     Client.getUserInfo(function(result){
       console.log(result);
-      props.setState({name: result});
+      var name = result;
+      this.props.store.dispatch(actions.setUserName(name));
+      // this.props.store.subscribe(function () {
+      //   this.props.store.setState({name: result});
+      //   console.log('inside subscribe');
+      // })
     });
     console.log('component did mount')
   }
@@ -45,7 +51,8 @@ class Home extends Component {
 
 class UserProfile extends Component {
   render() {
-    return (<h1>{this.props.route.globalState.name} Profile</h1>);
+    return (<h1>Your Profile</h1>);
+    //return (<h1>{this.props.store.name} Profile</h1>);
   }
 }
 
@@ -67,17 +74,23 @@ class SingleContact extends Component {
 class App extends Component {
   constructor() {
     super()
-    this.state = {
-      name: ''
-    }
+    this.state = initialState;
   }
+
+  componentDidMount () {
+    console.log('App component mounted')
+    this.props.store.subscribe(function () {
+      this.setState(this.props.store.getState());
+    }.bind(this));
+  }
+
   render() {
 
     return (
       <Router history={hashHistory}>
-        <Route path='/' component={Container} globalState={this.state} >
+        <Route path='/' component={Container} >
           <IndexRoute component={Home} />
-          <Route path='/userProfile' component={UserProfile} globalState={this.state} />
+          <Route path='/userProfile' component={UserProfile} />
           <Route path='/contacts' component={Contacts} >
             <IndexRoute component={SingleContact} />
           </Route>
@@ -87,4 +100,7 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  store: React.PropTypes.object.isRequired
+}
+export default App;//{ App, Container, Nav, Home, UserProfile, Contacts };
