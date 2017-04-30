@@ -25,12 +25,6 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount () {
-    // this.props.subscribe(function () {
-    //   this.setState(this.props.store.getState());
-    // }.bind(this));
-  }
-
   render() {
     return (
       <Router history={hashHistory}>
