@@ -1,64 +1,19 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
-import * as actions from './actions';
-import * as initialState from './initialState.js';
-import SelectedFoods from './SelectedFoods';
-import FoodSearch from './FoodSearch';
-import Client from './Client';
+import { connect } from 'react-redux';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Container from'./Container';
+import Login from './Login';
+import UserProfile from './UserProfile';
+import Home from './Home';
+import Signup from './Signup';
 
-class Container extends Component {
- 
-  componentDidMount() {
-    Client.getUserInfo(function(result){
-      console.log(result);
-      var name = result;
-      this.props.store.dispatch(actions.setUserName(name));
-      // this.props.store.subscribe(function () {
-      //   this.props.store.setState({name: result});
-      //   console.log('inside subscribe');
-      // })
-    });
-    console.log('component did mount')
-  }
-
-  render() {
-    return (
-    <div>
-      <Nav />
-      {this.props.children}
-    </div>);
-  }
-} 
-
-class Nav extends Component {
-  render() {
-    return (
-      <div>
-        <Link to='/'>Home</Link>&nbsp;
-        <Link to='/userProfile'>Profile</Link>&nbsp;
-        <Link to='/contacts'>Contacts</Link>
-      </div>
-    );
-  }
-}
 
 //different page components
-class Home extends Component {
-  render() {
-    return (<h1>This is the home page</h1>);
-  }
-}
-
-class UserProfile extends Component {
-  render() {
-    return (<h1>Your Profile</h1>);
-    //return (<h1>{this.props.store.name} Profile</h1>);
-  }
-}
 
 class Contacts extends Component {
   constructor(props) {
     super(props);
+    //this.props.dispatch(actions.showContacts(this.props.currentUser));
   }
   render() {
     return (<h1>These Are Your Contacts</h1>);
@@ -72,35 +27,51 @@ class SingleContact extends Component {
 }
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = initialState;
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount () {
-    console.log('App component mounted')
-    this.props.store.subscribe(function () {
-      this.setState(this.props.store.getState());
-    }.bind(this));
+    // this.props.subscribe(function () {
+    //   this.setState(this.props.store.getState());
+    // }.bind(this));
   }
 
   render() {
-
-    return (
-      <Router history={hashHistory}>
+    let routes = this.props.loggedIn ? (
         <Route path='/' component={Container} >
-          <IndexRoute component={Home} />
+          <IndexRoute component={Home}/>
+          <Route path='/signup' component={Signup} />
+          <Route path='/home' component={Home} />
           <Route path='/userProfile' component={UserProfile} />
           <Route path='/contacts' component={Contacts} >
             <IndexRoute component={SingleContact} />
           </Route>
         </Route>
+    ) : (
+        <Route path='/' component={Container} >
+          <IndexRoute component={Login}/>
+          <Route path='/signup' component={Signup} />
+          <Route path='/home' component={Home} />
+          <Route path='/userProfile' component={UserProfile} />
+          <Route path='/contacts' component={Contacts} >
+            <IndexRoute component={SingleContact} />
+          </Route>
+        </Route>
+    )
+    return (
+      <Router history={hashHistory}>
+       {routes}
       </Router>
     );
   }
 }
 
-App.propTypes = {
-  store: React.PropTypes.object.isRequired
+let mapStateToProps = (state) => {
+  return {
+    loggedIn: state.loggedIn,
+    currentUser: state.currentUser
+  };
 }
-export default App;//{ App, Container, Nav, Home, UserProfile, Contacts };
+
+export default connect(mapStateToProps)(App);//{ App, Container, Nav, Home, UserProfile, Contacts };

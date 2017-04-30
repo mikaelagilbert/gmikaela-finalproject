@@ -1,3 +1,6 @@
-const name = 'User';
+const loggedIn = false;
+const currentUser = null;
+const email = '';
+const password = '';
 
-export { name }
+export { loggedIn, currentUser, email, password }

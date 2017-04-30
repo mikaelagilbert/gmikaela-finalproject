@@ -26,10 +26,27 @@ router.get('/dbtest', (req, res) => {
 app.get('/user', (req, res) => {
   //should get username from req.body.username once you implement login
   //var username = req.session.username;
-  var globalusername = 'mikaelagilbert';
+  // var globalusername = 'mikaelagilbert';
 
-  usersDb.getUser({username: globalusername}, function (error, result) {
-    res.json({name: globalusername});
+  // usersDb.getUser({email: email}, function (error, result) {
+  //   res.json({name: globalusername});
+  // });
+});
+
+app.get('/loginRoute', (req, res) => {
+  console.log(req.query)
+  email = req.query.email;
+  password = req.query.password;
+  console.log('made it here');
+  usersDb.getUser(email, function (err, user) {
+    console.log(user)
+    usersDb.checkPassword(password, user, function(err, isRight) {
+      if (isRight) {
+        res.json({response: true});
+      } else {
+        res.json({response: false});
+      }
+    });
   });
 });
 

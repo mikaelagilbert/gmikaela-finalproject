@@ -18,8 +18,10 @@ module.exports = {
     });
   },
 
-  checkPassword: function (possiblePass, callback) {
-    bcrypt.compare(possiblePass, this.password, function (err, isRight) {
+  checkPassword: function (possiblePass, user, callback) {
+    console.log('possiblePass: ' + possiblePass)
+    console.log('real password: ' + password)
+    bcrypt.compare(possiblePass, user.password, function (err, isRight) {
       if (err) return callback(err);
       callback(null, isRight);
     });
@@ -30,7 +32,8 @@ module.exports = {
 
   },
 
-  getUser: function (username, callback) {
-    var user = mongo.User.findOne({username: username}, callback);
+  getUser: function (email, callback) {
+    console.log('inside userDb.getUser')
+    var user = mongo.User.findOne({email: email}, callback);
   }
 };

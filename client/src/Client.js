@@ -1,12 +1,4 @@
 /* eslint-disable no-undef */
-function search(query, cb) {
-  return fetch(`api/food?q=${query}`, {
-    accept: 'application/json',
-  }).then(checkStatus)
-    .then(parseJSON)
-    .then(cb);
-}
-
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -23,15 +15,25 @@ function parseJSON(response) {
 }
 
 function getUserInfo(cb) {
-  return fetch(`/user`, {
+  // return fetch(`/user`, {
+  //   accept: 'application/json',
+  // }).then(checkStatus)
+  //   .then(parseJSON)
+  //   .then(function(response) {
+  //     // console.log("HELLO!" + response);
+  //     cb(response);
+  //   })
+}
+
+function submitLoginRequest(email, password, callback) {
+  return fetch(`/loginRoute?email=${email}&password=${password}`, {
+    //method: "POST",
     accept: 'application/json',
   }).then(checkStatus)
     .then(parseJSON)
     .then(function(response) {
-      // console.log("HELLO!" + response);
-      cb(response);
-    })
+      callback(response);
+    });
 }
 
-const Client = { getUserInfo };
-export default Client;
+export default {getUserInfo, submitLoginRequest};

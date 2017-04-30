@@ -1,3 +1,16 @@
+const loginRequest = (email) => {
+  return {
+    type: 'LOGIN_REQUEST',
+    email: email
+  };
+};
+
+//logout
+
+//add contact
+
+//newUser
+
 const setUserName = (name) => {
   return {
     type: 'SET_USER_NAME',
@@ -5,4 +18,5 @@ const setUserName = (name) => {
   };
 };
 
-export { setUserName };
+
+export default { setUserName, loginRequest };
