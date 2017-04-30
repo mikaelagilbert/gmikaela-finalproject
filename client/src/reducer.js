@@ -4,16 +4,15 @@ import * as initialState from './initialState.js';
 const reducer = (state, action) => {
   switch (action.type) {  
 
-    //case
-
-    case 'SET_USER_NAME': {
+    case 'LOGIN_REQUEST': {
+      console.log('hit login request in reducer')
       return Object.assign({}, state, {
-        name: 'placeholder name to see if this works'
+        loggedIn: true,
+        currentUser: action.email
       });
     }
 
-    case 'LOGIN_REQUEST': {
-      console.log('hit login request in reducer')
+    case 'ADD_USER': {
       return Object.assign({}, state, {
         loggedIn: true,
         currentUser: action.email

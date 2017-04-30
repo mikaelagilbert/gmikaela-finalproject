@@ -48,7 +48,6 @@ app.get('/loginRoute', (req, res) => {
 });
 
 app.get('/newUser', (req, res) => {
-  console.log('inside /newUser route')
   var userData = {
     email: req.query.email,
     password: req.query.password
@@ -65,7 +64,6 @@ app.get('/newUser', (req, res) => {
 app.use('/', router);
 
 app.use('/', function(req, res, next) {
-  console.log('on the backend!');
   next();
 })
 

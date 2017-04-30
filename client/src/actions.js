@@ -7,7 +7,7 @@ const loginRequest = (email) => {
 
 const addUser = (email) => {
   return {
-    type: 'LOGIN_REQUEST',
+    type: 'ADD_USER',
     email: email
   };
 };
@@ -21,4 +21,4 @@ const logout = () => {
 //add contact
 
 
-export default { loginRequest, addUser, logout };
+export { loginRequest, addUser, logout };

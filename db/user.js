@@ -37,11 +37,9 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
   createUser: function (userData, callback) {
-    console.log(userData)
     var user = new mongo.User(userData);
     console.log(user)
     user.save(function (error) {
-      console.log('user.save error:' + error)
       callback(error);
     });
   },
@@ -67,7 +65,6 @@ module.exports = {
   },
 
   getUser: function (email, callback) {
-    console.log('inside userDb.getUser')
     var user = mongo.User.findOne({email: email}, callback);
   }
 };
