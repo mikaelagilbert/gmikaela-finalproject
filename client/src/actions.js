@@ -5,18 +5,20 @@ const loginRequest = (email) => {
   };
 };
 
-//logout
-
-//add contact
-
-//newUser
-
-const setUserName = (name) => {
+const addUser = (email) => {
   return {
-    type: 'SET_USER_NAME',
-    name: name
+    type: 'LOGIN_REQUEST',
+    email: email
   };
 };
 
+const logout = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
 
-export default { setUserName, loginRequest };
+//add contact
+
+
+export default { loginRequest, addUser, logout };

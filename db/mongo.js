@@ -14,10 +14,9 @@ var bcrypt = require('bcrypt');
 var db = mongoose.connection;
 
 var userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
   password: { type: String, required: true },
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  name: String,
   company: String,
   job_title: String,
   contacts: Array,
@@ -26,8 +25,9 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function(next) {
+  console.log('inside userSchema.pre')
   var user = this;
-
+  console.log(user)
   //if (!user.isModified('password')) return next(); //do i have an isModified function?
 
   bcrypt.genSalt(10, function(err, salt) {
@@ -41,7 +41,7 @@ userSchema.pre('save', function(next) {
     });
   });
 });
-//what methods do I need for a user?
+// //what methods do I need for a user?
 
 var User = mongoose.model('User', userSchema);
 

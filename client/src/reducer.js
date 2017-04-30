@@ -19,6 +19,14 @@ const reducer = (state, action) => {
         currentUser: action.email
       });
     }
+
+    case 'LOGOUT': {
+      return Object.assign({}, state, {
+        loggedIn: false,
+        currentUser: ''
+      });
+    }
+
     default:
     return state;
   }

@@ -14,16 +14,16 @@ function parseJSON(response) {
   return response.json();
 }
 
-function getUserInfo(cb) {
-  // return fetch(`/user`, {
-  //   accept: 'application/json',
-  // }).then(checkStatus)
-  //   .then(parseJSON)
-  //   .then(function(response) {
-  //     // console.log("HELLO!" + response);
-  //     cb(response);
-  //   })
-}
+// function getUserInfo(cb) {
+//   return fetch(`/user`, {
+//     accept: 'application/json',
+//   }).then(checkStatus)
+//     .then(parseJSON)
+//     .then(function(response) {
+//       // console.log("HELLO!" + response);
+//       cb(response);
+//     })
+// }
 
 function submitLoginRequest(email, password, callback) {
   return fetch(`/loginRoute?email=${email}&password=${password}`, {
@@ -36,4 +36,15 @@ function submitLoginRequest(email, password, callback) {
     });
 }
 
-export default {getUserInfo, submitLoginRequest};
+function addUser(email, password, callback) {
+  return fetch(`/newUser?email=${email}&password=${password}`, {
+    //method: "POST",
+    accept: 'application/json',
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(function(response) {
+      callback(response);
+    });
+}
+
+export default {submitLoginRequest, addUser};

@@ -34,12 +34,9 @@ app.get('/user', (req, res) => {
 });
 
 app.get('/loginRoute', (req, res) => {
-  console.log(req.query)
   email = req.query.email;
   password = req.query.password;
-  console.log('made it here');
   usersDb.getUser(email, function (err, user) {
-    console.log(user)
     usersDb.checkPassword(password, user, function(err, isRight) {
       if (isRight) {
         res.json({response: true});
@@ -48,6 +45,21 @@ app.get('/loginRoute', (req, res) => {
       }
     });
   });
+});
+
+app.get('/newUser', (req, res) => {
+  console.log('inside /newUser route')
+  var userData = {
+    email: req.query.email,
+    password: req.query.password
+  };
+  usersDb.createUser(userData, function (err) {
+    if (err) {
+      res.json({response: false});
+    } else {
+      res.json({response: true});
+    }
+  }); 
 });
 
 app.use('/', router);
