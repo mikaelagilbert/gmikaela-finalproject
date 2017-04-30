@@ -25,10 +25,7 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function(next) {
-  console.log('inside userSchema.pre')
   var user = this;
-  console.log(user)
-  //if (!user.isModified('password')) return next(); //do i have an isModified function?
 
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err);
@@ -41,7 +38,6 @@ userSchema.pre('save', function(next) {
     });
   });
 });
-// //what methods do I need for a user?
 
 var User = mongoose.model('User', userSchema);
 

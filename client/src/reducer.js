@@ -1,11 +1,9 @@
 import * as initialState from './initialState.js';
 
-
 const reducer = (state, action) => {
   switch (action.type) {  
 
     case 'LOGIN_REQUEST': {
-      console.log('hit login request in reducer')
       return Object.assign({}, state, {
         loggedIn: true,
         currentUser: action.email
@@ -27,7 +25,7 @@ const reducer = (state, action) => {
     }
 
     default:
-    return state;
+      return state;
   }
 };
 

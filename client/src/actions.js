@@ -18,7 +18,4 @@ const logout = () => {
   };
 };
 
-//add contact
-
-
 export { loginRequest, addUser, logout };

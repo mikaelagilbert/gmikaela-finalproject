@@ -7,18 +7,7 @@ import UserProfile from './UserProfile';
 import Home from './Home';
 import Signup from './Signup';
 import Logout from './Logout';
-
-//different page components
-
-class Contacts extends Component {
-  constructor(props) {
-    super(props);
-    //this.props.dispatch(actions.showContacts(this.props.currentUser));
-  }
-  render() {
-    return (<h1>These Are Your Contacts</h1>);
-  }
-}
+import Contacts from './Contacts';
 
 class App extends Component {
   constructor(props) {
@@ -39,8 +28,6 @@ class App extends Component {
          </Route>
       </Router>
     );
-
-
   }
 }
 
@@ -51,4 +38,4 @@ let mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(App);//{ App, Container, Nav, Home, UserProfile, Contacts };
+export default connect(mapStateToProps)(App);

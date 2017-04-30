@@ -12,25 +12,16 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-
 var router = new express.Router();
 
-
 router.get('/dbtest', (req, res) => {
-  console.log('router working');
   usersDb.getUser('mikaelagilbert', function (error, result) {
     console.log(error, result);
   });
 });
 
 app.get('/user', (req, res) => {
-  //should get username from req.body.username once you implement login
-  //var username = req.session.username;
-  // var globalusername = 'mikaelagilbert';
 
-  // usersDb.getUser({email: email}, function (error, result) {
-  //   res.json({name: globalusername});
-  // });
 });
 
 app.get('/loginRoute', (req, res) => {
@@ -66,9 +57,6 @@ app.use('/', router);
 app.use('/', function(req, res, next) {
   next();
 })
-
-
-
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import * as initialState from './initialState';
 import Client from './Client';
-import { routeActions } from 'redux-simple-router';
+//import { routeActions } from 'redux-simple-router';
 import './Login.css';
 
 //add name to sign up process
